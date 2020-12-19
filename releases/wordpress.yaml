@@ -1,0 +1,20 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: demo
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: glob:3.1.1-debian-9-*
+spec:
+  releaseName: wordpress
+  chart:
+    git: https://github.com/bitnami/charts.git
+    ref: master
+    path: bitnami/wordpress
+  values:
+    image:
+      repository: bitnami/wordpress
+      tag: 3.1.1-debian-9-r0
+
